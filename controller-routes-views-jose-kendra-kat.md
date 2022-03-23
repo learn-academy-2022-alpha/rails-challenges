@@ -70,18 +70,37 @@ class MainController < ApplicationController
         end
         'evenly.html.erb'
     end
+    def palindrome
+        if params[:string].reverse == params[:string]
+            @results = 'The word you entered is a palindrome.'
+        else 
+            @results = 'The word you entered is not a palindrome.'
+        end 
+    end
 end
 
 
-MAIN.HTML.ERB file
+
+MAIN HTML ERB file
 <h1>Main Page</h1>
-<h2>Team Members</h2>
- 
-<%= link_to 'Jose', '/jose'%>
-<%= link_to 'Kendra', '/kendra'%>
-<%= link_to 'Kat', '/kat'%>
-<%= link_to 'Cubed', '/cubed'%>
-<%= link_to 'Evenly', '/evenly'%>
+<br/>
+
+<h3>Team Members</h3>
+<ol>
+<li><%= link_to 'Jose', '/jose'%></li>
+<li><%= link_to 'Kendra', '/kendra'%></li>
+<li><%= link_to 'Kat', '/kat'%> </li>
+</ol>
+<br/>
+<br/>
+<ul>
+<li> <%= link_to 'Cubed', '/cubed'%></li>
+<li><%= link_to 'Evenly', '/evenly'%></li>
+<li><%= link_to 'Palindrome', '/palindrome'%></li>
+
+</ul>
+
+
 
 
 ROUTES.RB file
@@ -92,5 +111,12 @@ Rails.application.routes.draw do
     get '/cubed/:number' => 'main#cubed'
     get '/cubed/:number', to: 'main#cubed'
     get '/evenly/:num/:num1' => 'main#evenly'
+    get '/palindrome/:string' => 'main#palindrome'
     root 'main#main'
 end
+
+
+palindrome html file
+<h1> Palindrome </h1>
+
+<%= @results %>
