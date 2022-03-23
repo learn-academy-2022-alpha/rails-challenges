@@ -94,4 +94,3 @@ Rails.application.routes.draw do
     get '/evenly/:num/:num1' => 'main#evenly'
     root 'main#main'
 end
-
